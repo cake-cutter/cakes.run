@@ -50,6 +50,7 @@ export default async function handler(
         })
 
     } catch (e) {
+        console.log(e)
         res.status(400).send({
             success: 1,
             error: "Invalid query"

@@ -60,6 +60,7 @@ export default async function handler(
 
 
 		} catch (e) {
+			console.log(e)
 			res.status(400).json({
 				success: 1,
 				error: "Invalid request body"
