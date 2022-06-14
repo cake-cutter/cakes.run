@@ -8,3 +8,11 @@ datasource db {
   url = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
+
+model Cake {
+  name   String @id
+  short  String     // description
+  dsc    String     // readme
+  author String
+  cake   String @db.LongText
+}
