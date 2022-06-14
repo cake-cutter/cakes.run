@@ -11,8 +11,8 @@ datasource db {
 
 model Cake {
   name   String @id
-  short  String     // description
-  dsc    String     // readme
+  short  String                // description
+  dsc    String @db.LongText() // readme
   author String
-  cake   String @db.LongText
+  cake   String @db.LongText()
 }
