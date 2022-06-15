@@ -29,3 +29,54 @@
 body {
     background: #F9F7EC;
 }
+
+@media only screen and (min-width: 890px) {
+    .cake-info {
+        display: grid;
+        grid-template-columns: minmax(0,7fr) minmax(0,3fr);
+    }
+    
+    .cake-info .sidebar {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+}
+
+.cake-info .readme {
+    --shadow: 0 2px 3px hsla(51, 50%, 44%, .35);
+    margin-bottom: 25px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: var(--shadow)
+}
+
+.copy-button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 12px;
+    font-family: "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.5em;
+    color: #383838;
+    background: 0 0;
+    border-radius: 5px;
+    border: solid 2px #d5d3cb;
+}
+
+.copy-button svg {
+    flex-shrink: 0;
+    height: 1.1em;
+    width: auto;
+    margin-top: -3px;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 100ms;
+}
+
+.copy-button:hover svg {
+    opacity: 1;
+}

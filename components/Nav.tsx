@@ -24,7 +24,7 @@ const Nav = ({ input, val }: Props) => {
     useEffect(() => {
 
         if (input) {
-            i.current.value = val;
+            if (val) i.current.value = val;
 
             const onKeyPress = (key: any) => {
                 if (key.code === "KeyS") {
@@ -46,11 +46,16 @@ const Nav = ({ input, val }: Props) => {
         <div
             className={`
                 flex
-                gap-10
-                justify-between
+                md:gap-10
+                md:justify-between
                 items-center
                 md:px-52
+                justify-center
                 text-white
+                md:flex-row
+                flex-col
+                pb-5
+                md:pb-0
                 ${input ? "bg-green" : ""}
             `}
         >
@@ -100,7 +105,7 @@ const Nav = ({ input, val }: Props) => {
                 </form>
             )}
 
-            <h1 className="text-lg">
+            <h1 className="hidden md:inline-block text-lg">
                 Browse all cakes
             </h1>
 

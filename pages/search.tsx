@@ -13,18 +13,18 @@ const Search: NextPage = ({ q }: any) => {
         <div className="w-screen">
             <Nav input val={q} />
 
-            <div className="md:px-60">
+            <div className="lg:px-60 px-5">
                 <div
                     className="
                         flex
                         justify-start
                         items-center
                         px-9 py-10
-                        bg-gray-200
                         rounded-md
                         mt-5
                         gap-2
                     "
+                    style={{ backgroundColor: "#EDEBDD" }}
                 >
                     <svg
                         width="32" height="32"
@@ -60,8 +60,8 @@ const Search: NextPage = ({ q }: any) => {
                                         className="
                                             flex 
                                             justify-between 
-                                            mb-2 p-5 
-                                            rounded 
+                                            mb-2 p-5
+                                            rounded
                                             bg-white 
                                             drop-shadow-md
                                             cursor-pointer
@@ -72,11 +72,11 @@ const Search: NextPage = ({ q }: any) => {
                                         "
                                         onClick={() => router.push('/cake/' + e.name)}
                                     >
-                                        <div>
+                                        <div className="flex-1">
                                             <h1 className="font-bold">{e.name}</h1>
                                             <p className="text-gray-700">{e.short}</p>
                                         </div>
-                                        <div className="flex items-center mr-20">
+                                        <div className="flex items-center flex-2 w-fit lg:mr-20">
                                             <ul>
                                                 <li className="flex items-center">
                                                     <svg
@@ -84,7 +84,7 @@ const Search: NextPage = ({ q }: any) => {
                                                         stroke="#B23D8A" strokeWidth="0"
                                                         viewBox="0 0 20 20"
                                                         height="1.5em" width="1.5em"
-                                                        className="inline-block"
+                                                        className="inline"
                                                         xmlns="http://www.w3.org/2000/svg"
                                                     >
                                                         <path
