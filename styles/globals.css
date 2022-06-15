@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --yellow-500 : hsl(44, 100%, 60%);
+}
+
+* {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.search-form:focus-within {
+    outline: 0;
+    box-shadow: 0 0 0 4px  rgb(250 204 21) ,1px 2px 3px 4px hsl(115, 31%, 21%);
+}
+
+.search-form * {
+    outline: none;
+    border: none;
+}
+
+.home-links-button {
+    background: linear-gradient(to bottom,#fede9e 0%,#fdc452 100%);
+}
