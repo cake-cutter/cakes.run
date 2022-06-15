@@ -82,7 +82,6 @@ const Home: NextPage = () => {
   
         </div>
 
-
       </div>
 
       <div className='md:px-52 px-5'>
@@ -98,6 +97,13 @@ const Home: NextPage = () => {
         </div>
 
         <hr className='mt-10 h-[5px] border-none text-gray-300 bg-gray-300' />
+
+        <div className='mt-5 text-md text-gray-600'>
+          Cakecutter is a powerful tool for setting up a basic app of any type/language/framework. It manages templates through cakes. Cakes are written in toml. which are capable of asking question and creating files and running commands based on the answers
+        </div>
+        
+        <p className='text-center mt-20'>This website's design is taken from <a href='https://crates.io' target="+blank" className='underline'>crates.io</a></p>
+
       </div>
 
 

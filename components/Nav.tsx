@@ -106,7 +106,9 @@ const Nav = ({ input, val }: Props) => {
             )}
 
             <h1 className="hidden md:inline-block text-lg">
-                Browse all cakes
+                <a href="" target="_blank">
+                    Publish your own
+                </a>
             </h1>
 
         </div>
