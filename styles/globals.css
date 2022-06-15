@@ -25,3 +25,7 @@
 .home-links-button {
     background: linear-gradient(to bottom,#fede9e 0%,#fdc452 100%);
 }
+
+body {
+    background: #F9F7EC;
+}

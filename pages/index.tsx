@@ -1,12 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import Nav from '../components/Nav'
 
 const Home: NextPage = () => {
 
   const i = useRef<any>(null);
+  const router = useRouter();
 
   useEffect(() => {
 
@@ -16,13 +18,24 @@ const Home: NextPage = () => {
       }
     }
 
-    document.addEventListener('keypress', onKeyPress)
+    document.addEventListener('keyup', onKeyPress)
 
     return () => {
-      document.removeEventListener('keypress', onKeyPress);
+      document.removeEventListener('keyup', onKeyPress);
     }
 
   },[])
+
+  function Search(e: any) {
+    
+    e.preventDefault()
+
+    if (i.current.value && i.current.value.length < 1 || !i.current.value.replace(/\s/g, '').length ) {
+      return alert('Query is empty')
+    }
+
+    router.push('/search?q=' + i.current.value)
+  }
 
   return (
     <div className='w-screen'>
@@ -48,6 +61,7 @@ const Home: NextPage = () => {
               mt-2
               mx-20
             '
+            onSubmit={Search}
           >
             <input
               ref={i}
