@@ -106,7 +106,7 @@ const Nav = ({ input, val }: Props) => {
             )}
 
             <h1 className="hidden md:inline-block text-lg">
-                <a href="" target="_blank">
+                <a href="https://cake-cutter.github.io/docs/6-publish/" target="_blank">
                     Publish your own
                 </a>
             </h1>
