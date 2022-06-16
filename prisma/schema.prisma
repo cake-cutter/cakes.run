@@ -1,18 +1,20 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
 model Cake {
-  name   String @id
-  short  String                // description
-  dsc    String @db.LongText() // readme
-  author String
-  cake   String @db.LongText()
+  name       String   @id
+  short      String
+  dsc        String   @db.LongText
+  author     String
+  cake       String   @db.LongText
+  lastUpdate DateTime @default(now())
+  used       BigInt   @default(0)
 }

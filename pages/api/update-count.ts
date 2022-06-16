@@ -2,17 +2,9 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../db/client';
 
 interface Resp {
-    success: 0 | 1;
-    data?: {
-        name : string;
-        short : string;
-        dsc : string;
-        author : string;
-        cake : string;
-        lastUpdate: Date;
-        used: bigint;
-    };
-    error?: string;
+    success  : 0 | 1;
+    message? : string;
+    error?   : string;
 }
 
 export default async function handler(
@@ -23,7 +15,7 @@ export default async function handler(
     try {
         
         const { name } = req.query;
-        if (typeof name !== "string") {
+        if (typeof name !== "string" || name === undefined || name.length === null) {
             res.status(400).send({
                 success: 1,
                 error: "Invalid query"
@@ -45,9 +37,18 @@ export default async function handler(
             return
         }
 
+        await prisma.cake.update({
+            where: {
+                name: name
+            },
+            data : {
+                used: data.used + BigInt(1)
+            }
+        })
+        
         res.status(200).send({
             success: 0,
-            data: data
+            message: "Cake updated"
         })
 
     } catch (e) {
