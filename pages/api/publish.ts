@@ -82,7 +82,7 @@ export default async function handler(
 			console.log(e)
 			res.status(400).json({
 				success: 1,
-				error: "Invalid request body"
+				error: JSON.stringify(e)
 			});
 			return;
 		}

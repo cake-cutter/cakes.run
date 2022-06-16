@@ -54,7 +54,7 @@ export default async function handler(
         console.log(e)
         res.status(400).send({
             success: 1,
-            error: "Invalid query"
+            error: JSON.stringify(e)
         })
         return
     }
