@@ -1,4 +1,5 @@
 import { NextPage, NextPageContext } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Nav from "../components/Nav";
@@ -12,6 +13,10 @@ const Search: NextPage = ({ q }: any) => {
     return (
         <div className="w-screen">
             <Nav input val={q} />
+
+            <Head>
+                <title>Search cakes</title>
+            </Head>
 
             <div className="lg:px-60 px-5">
                 <div

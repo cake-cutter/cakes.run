@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 
@@ -59,6 +60,10 @@ const Nav = ({ input, val }: Props) => {
                 ${input ? "bg-green" : ""}
             `}
         >
+            <Head>
+                <title>Cakecutter</title>
+                <meta name="description" content="Cakecutter is a powerful tool for setting up a basic app of any type/language/framework." />
+            </Head>
             <div
                 className="
                     flex
