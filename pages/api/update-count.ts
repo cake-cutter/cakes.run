@@ -40,7 +40,7 @@ export default async function handler(
                 name: name.toString()
             },
             data : {
-                used: data.used + 1
+                used: data!.used + 1
             }
         })
         
