@@ -176,10 +176,10 @@ const Cake: NextPage = ({ name }: any) => {
     )
 }
 
-export async function getServerSideProps({ params: { name } }: any) {
+export async function getServerSideProps(context: any) {
     return {
         props: {
-            name
+            name : context.params.name
         }
     }
 }

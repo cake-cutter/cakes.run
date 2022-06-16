@@ -10,7 +10,6 @@ interface Resp {
         author : string;
         cake : string;
         lastUpdate: Date;
-        used: number;
     };
     error?: string;
 }
@@ -40,7 +39,6 @@ export default async function handler(
 
         res.status(200).send({
             success: 0,
-            // @ts-ignore
             data: data
         })
 

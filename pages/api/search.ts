@@ -9,6 +9,7 @@ interface Resp {
         dsc : string;
         author : string;
         cake : string;
+        lastUpdate: Date;
     }>;
     error?: string;
 }
