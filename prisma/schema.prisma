@@ -16,5 +16,4 @@ model Cake {
   author     String
   cake       String   @db.LongText
   lastUpdate DateTime @default(now())
-  used       Int   @default(0)
 }
