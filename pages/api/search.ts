@@ -21,22 +21,15 @@ export default async function handler(
     try {
 
         const { name, page, limit } = req.query;
-        if (typeof name !== "string" || typeof page !== "string" || typeof limit !== "string") {
-            res.status(400).send({
-                success: 1,
-                error: "Invalid query"
-            })
-            return
-        }
 
         const data = await prisma.cake.findMany({
             where : {
                 name : {
-                    contains: name
+                    contains: name.toString()
                 }
             },
-            skip: parseInt(page) * parseInt(limit),
-            take: parseInt(limit)
+            skip: parseInt(page.toString()) * parseInt(limit.toString()),
+            take: parseInt(limit.toString())
         })
 
         if (data === null) {
@@ -56,7 +49,7 @@ export default async function handler(
         console.log(e)
         res.status(400).send({
             success: 1,
-            error: JSON.stringify(e)
+            error: (`${e}`)
         })
         return
     }
