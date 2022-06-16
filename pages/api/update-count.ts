@@ -12,6 +12,11 @@ export default async function handler(
 	res: NextApiResponse<Resp>
 ) {
 
+    return res.status(200).json({
+        success: 0,
+        message: "Hello World"
+    })
+
     try {
         
         const { name } = req.query;
@@ -35,7 +40,7 @@ export default async function handler(
                 name: name.toString()
             },
             data : {
-                used: data.used + BigInt(1)
+                used: data.used + 1
             }
         })
         

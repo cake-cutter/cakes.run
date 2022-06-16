@@ -10,7 +10,7 @@ interface Resp {
         author : string;
         cake : string;
         lastUpdate: Date;
-        used: bigint;
+        used: number;
     };
     error?: string;
 }
