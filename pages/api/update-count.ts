@@ -17,45 +17,45 @@ export default async function handler(
         message: "Hello World"
     })
 
-    try {
+    // try {
         
-        const { name } = req.query;
+    //     const { name } = req.query;
 
-        const data = await prisma.cake.findFirst({
-            where : {
-                name: name.toString()
-            }
-        })
+    //     const data = await prisma.cake.findFirst({
+    //         where : {
+    //             name: name.toString()
+    //         }
+    //     })
 
-        if (data === null) {
-            res.status(404).send({
-                success: 1,
-                error: "Cake not found"
-            })
-            return
-        }
+    //     if (data === null) {
+    //         res.status(404).send({
+    //             success: 1,
+    //             error: "Cake not found"
+    //         })
+    //         return
+    //     }
 
-        await prisma.cake.update({
-            where: {
-                name: name.toString()
-            },
-            data : {
-                used: data!.used + 1
-            }
-        })
+    //     await prisma.cake.update({
+    //         where: {
+    //             name: name.toString()
+    //         },
+    //         data : {
+    //             used: data!.used + 1
+    //         }
+    //     })
         
-        res.status(200).send({
-            success: 0,
-            message: "Cake updated"
-        })
+    //     res.status(200).send({
+    //         success: 0,
+    //         message: "Cake updated"
+    //     })
 
-    } catch (e) {
-        console.log(e)
-        res.status(400).send({
-            success: 1,
-            error: "Invalid query"
-        })
-        return
-    }
+    // } catch (e) {
+    //     console.log(e)
+    //     res.status(400).send({
+    //         success: 1,
+    //         error: "Invalid query"
+    //     })
+    //     return
+    // }
 
 }
