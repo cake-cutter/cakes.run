@@ -43,11 +43,30 @@ export default async function handler(
 				return
 			}
 
+			if (body.name.includes(" ")) {
+				res.status(400).send({
+					success: 1,
+					error: "Name can't contain spaces"
+				})
+				return
+			}
+
+			if (body.name.length < 1) {
+				res.status(400).send({
+					success: 1,
+					error: "Name is required"
+				})
+				return
+			}
+
 			await prisma.cake.upsert({
 				where : {
 					name : body.name
 				},
-				update : body,
+				update : {
+					lastUpdate : new Date(),
+					...body
+				},
 				create : body
 			})
 

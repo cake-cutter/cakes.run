@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 
@@ -111,9 +112,9 @@ const Nav = ({ input, val }: Props) => {
             )}
 
             <h1 className="hidden md:inline-block text-lg">
-                <a href="https://cake-cutter.github.io/6-publish/" target="_blank">
-                    Publish your own
-                </a>
+                <Link href="/browse">
+                    Browse all cakes
+                </Link>
             </h1>
 
         </div>

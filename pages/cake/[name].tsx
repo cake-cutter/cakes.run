@@ -15,6 +15,7 @@ const Cake: NextPage = ({ name }: any) => {
     useEffect(() => {
 
         if (data) {
+            console.log(data)
             if (data.success != 0) {
                 router.push('/')
             }
@@ -24,7 +25,7 @@ const Cake: NextPage = ({ name }: any) => {
     },[data, error])
 
     return (
-        <div className="w-screen overflow-x-hidden">
+        <div className="w-screen">
             <Nav input />
             
             <Head>
@@ -32,7 +33,7 @@ const Cake: NextPage = ({ name }: any) => {
                 <meta name="description" content="Cakecutter is a powerful tool for setting up a basic app of any type/language/framework." />
             </Head>
 
-            <div className="lg:px-60 px-5 box-border overflow-x-hidden">
+            <div className="lg:px-60 px-5 box-border">
 
                 <div
                     className="
@@ -76,18 +77,15 @@ const Cake: NextPage = ({ name }: any) => {
 
                         <ul className="mt-2">
                             <li>
-                                <svg
-                                    stroke="currentColor" strokeWidth="0"
-                                    fill="currentColor" className="inline-block mr-2"
-                                    viewBox="0 0 1024 1024"
-                                    height="1.2em" width="1.2em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M928 160H96c-17.7 0-32 14.3-32 32v160h896V192c0-17.7-14.3-32-32-32zM64 832c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V440H64v392zm579-184c0-4.4 3.6-8 8-8h165c4.4 0 8 3.6 8 8v72c0 4.4-3.6 8-8 8H651c-4.4 0-8-3.6-8-8v-72z"
-                                    />
-                                </svg>
-                                {data?.data?.author}
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="currentColor" 
+                                viewBox="0 0 100 100" 
+                                width="1.5em" height="1.5em"
+                            >
+                                <path d="M35.156 56.25h-7.812A2.35 2.35 0 0125 53.906v-7.812a2.35 2.35 0 012.344-2.344h7.812a2.35 2.35 0 012.344 2.344v7.812a2.35 2.35 0 01-2.344 2.344zm21.094-2.344v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812a2.35 2.35 0 002.344-2.344zm18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812A2.35 2.35 0 0075 53.906zm-18.75 18.75v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0046.094 75h7.812a2.35 2.35 0 002.344-2.344zm-18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812A2.35 2.35 0 0025 64.844v7.812A2.35 2.35 0 0027.344 75h7.812a2.35 2.35 0 002.344-2.344zm37.5 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0064.844 75h7.812A2.35 2.35 0 0075 72.656zm18.75-50.781v68.75c0 5.176-4.2 9.375-9.375 9.375h-68.75c-5.176 0-9.375-4.2-9.375-9.375v-68.75c0-5.176 4.2-9.375 9.375-9.375H25V2.344A2.35 2.35 0 0127.344 0h7.812A2.35 2.35 0 0137.5 2.344V12.5h25V2.344A2.35 2.35 0 0164.844 0h7.812A2.35 2.35 0 0175 2.344V12.5h9.375c5.176 0 9.375 4.2 9.375 9.375zm-9.375 67.578V31.25h-68.75v58.203c0 .645.527 1.172 1.172 1.172h66.406c.645 0 1.172-.527 1.172-1.172z"/>
+                            </svg>
+                                {data?.data?.lastUpdate}
                             </li>
 
                             <li>
@@ -104,7 +102,7 @@ const Cake: NextPage = ({ name }: any) => {
                                         d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                                     />
                                 </svg>
-                                {data?.data?.name}
+                                {data?.data?.author}
                             </li>
                         </ul>
 
