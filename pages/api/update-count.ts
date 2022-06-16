@@ -15,17 +15,10 @@ export default async function handler(
     try {
         
         const { name } = req.query;
-        if (typeof name !== "string" || name === undefined || name.length === null) {
-            res.status(400).send({
-                success: 1,
-                error: "Invalid query"
-            })
-            return
-        }
 
         const data = await prisma.cake.findFirst({
             where : {
-                name: name
+                name: name.toString()
             }
         })
 
@@ -39,7 +32,7 @@ export default async function handler(
 
         await prisma.cake.update({
             where: {
-                name: name
+                name: name.toString()
             },
             data : {
                 used: data.used + BigInt(1)
@@ -55,7 +48,7 @@ export default async function handler(
         console.log(e)
         res.status(400).send({
             success: 1,
-            error: JSON.stringify(e)
+            error: "Invalid query"
         })
         return
     }
