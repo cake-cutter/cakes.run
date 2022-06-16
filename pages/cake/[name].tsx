@@ -6,8 +6,9 @@ import useCake from "../../hooks/useCake";
 import rehypeRaw from "rehype-raw";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { AnimatePresence, motion } from "framer-motion";
 
-function timeDifference(current : Date, previous: Date) {
+function timeDifference(current: Date, previous: Date) {
 
     var msPerMinute = 60 * 1000;
     var msPerHour = msPerMinute * 60;
@@ -18,27 +19,27 @@ function timeDifference(current : Date, previous: Date) {
     var elapsed = current.valueOf() - previous.valueOf();
 
     if (elapsed < msPerMinute) {
-         return Math.round(elapsed/1000) + ' seconds ago';   
+        return Math.round(elapsed / 1000) + ' seconds ago';
     }
 
     else if (elapsed < msPerHour) {
-         return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+        return Math.round(elapsed / msPerMinute) + ' minutes ago';
     }
 
-    else if (elapsed < msPerDay ) {
-         return Math.round(elapsed/msPerHour ) + ' hours ago';   
+    else if (elapsed < msPerDay) {
+        return Math.round(elapsed / msPerHour) + ' hours ago';
     }
 
     else if (elapsed < msPerMonth) {
-        return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';   
+        return 'approximately ' + Math.round(elapsed / msPerDay) + ' days ago';
     }
 
     else if (elapsed < msPerYear) {
-        return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';   
+        return 'approximately ' + Math.round(elapsed / msPerMonth) + ' months ago';
     }
 
     else {
-        return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+        return 'approximately ' + Math.round(elapsed / msPerYear) + ' years ago';
     }
 }
 
@@ -46,6 +47,8 @@ const Cake: NextPage = ({ name }: any) => {
 
     const { data, error } = useCake(name)
     const router = useRouter();
+
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
 
@@ -57,12 +60,31 @@ const Cake: NextPage = ({ name }: any) => {
         }
 
 
-    },[data, error])
+    }, [data, error])
 
     return (
         <div className="w-screen">
+            <AnimatePresence>
+                {copied && (
+                    <motion.div
+                        initial={{
+                            x: 2000
+                        }}
+                        animate={{
+                            x: 0
+                        }}
+                        exit={{
+                            x: 2000
+                        }}
+                        className="fixed right-0 mx-2 my-2 bottom-0 px-5 py-2 border-gray-600 rounded-md border-2"
+                    >
+                        Copied to clipboard
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <Nav input />
-            
+
             <Head>
                 <title>{data?.data?.name} - cakecutter</title>
                 <meta name="description" content="Cakecutter is a powerful tool for setting up a basic app of any type/language/framework." />
@@ -112,16 +134,18 @@ const Cake: NextPage = ({ name }: any) => {
 
                         <ul className="mt-2">
                             <li>
-                                <svg 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    fill="currentColor" 
-                                    viewBox="0 0 100 100" 
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    viewBox="0 0 100 100"
                                     width="1.5em" height="1.5em"
                                     className="inline-block mr-1"
                                 >
-                                    <path d="M35.156 56.25h-7.812A2.35 2.35 0 0125 53.906v-7.812a2.35 2.35 0 012.344-2.344h7.812a2.35 2.35 0 012.344 2.344v7.812a2.35 2.35 0 01-2.344 2.344zm21.094-2.344v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812a2.35 2.35 0 002.344-2.344zm18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812A2.35 2.35 0 0075 53.906zm-18.75 18.75v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0046.094 75h7.812a2.35 2.35 0 002.344-2.344zm-18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812A2.35 2.35 0 0025 64.844v7.812A2.35 2.35 0 0027.344 75h7.812a2.35 2.35 0 002.344-2.344zm37.5 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0064.844 75h7.812A2.35 2.35 0 0075 72.656zm18.75-50.781v68.75c0 5.176-4.2 9.375-9.375 9.375h-68.75c-5.176 0-9.375-4.2-9.375-9.375v-68.75c0-5.176 4.2-9.375 9.375-9.375H25V2.344A2.35 2.35 0 0127.344 0h7.812A2.35 2.35 0 0137.5 2.344V12.5h25V2.344A2.35 2.35 0 0164.844 0h7.812A2.35 2.35 0 0175 2.344V12.5h9.375c5.176 0 9.375 4.2 9.375 9.375zm-9.375 67.578V31.25h-68.75v58.203c0 .645.527 1.172 1.172 1.172h66.406c.645 0 1.172-.527 1.172-1.172z"/>
+                                    <path d="M35.156 56.25h-7.812A2.35 2.35 0 0125 53.906v-7.812a2.35 2.35 0 012.344-2.344h7.812a2.35 2.35 0 012.344 2.344v7.812a2.35 2.35 0 01-2.344 2.344zm21.094-2.344v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812a2.35 2.35 0 002.344-2.344zm18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812A2.35 2.35 0 0075 53.906zm-18.75 18.75v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0046.094 75h7.812a2.35 2.35 0 002.344-2.344zm-18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812A2.35 2.35 0 0025 64.844v7.812A2.35 2.35 0 0027.344 75h7.812a2.35 2.35 0 002.344-2.344zm37.5 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0064.844 75h7.812A2.35 2.35 0 0075 72.656zm18.75-50.781v68.75c0 5.176-4.2 9.375-9.375 9.375h-68.75c-5.176 0-9.375-4.2-9.375-9.375v-68.75c0-5.176 4.2-9.375 9.375-9.375H25V2.344A2.35 2.35 0 0127.344 0h7.812A2.35 2.35 0 0137.5 2.344V12.5h25V2.344A2.35 2.35 0 0164.844 0h7.812A2.35 2.35 0 0175 2.344V12.5h9.375c5.176 0 9.375 4.2 9.375 9.375zm-9.375 67.578V31.25h-68.75v58.203c0 .645.527 1.172 1.172 1.172h66.406c.645 0 1.172-.527 1.172-1.172z" />
                                 </svg>
-                                {timeDifference(new Date(), new Date(data?.data?.lastUpdate))}
+                                <time dateTime={data?.data?.lastUpdate}>
+                                    {timeDifference(new Date(), new Date(data?.data?.lastUpdate))}
+                                </time>
                             </li>
 
                             <li>
@@ -144,25 +168,29 @@ const Cake: NextPage = ({ name }: any) => {
 
                         <h1 className="font-extrabold text-xl mt-3 mb-1">Usage</h1>
                         <p className="text-gray-500 text-sm">Install the cli and run this command</p>
-                        <button 
-                            className="text-center cursor-pointer copy-button" 
-                            title="Copy command to clipboard" 
+                        <button
+                            className="text-center cursor-pointer copy-button"
+                            title="Copy command to clipboard"
                             type="button"
-                            onClick={() => {                              
+                            onClick={() => {
                                 navigator.clipboard.writeText(`cc cut ${data?.data?.name}`);
+                                setCopied(true);
+                                setTimeout(() => {
+                                    setCopied(false);
+                                }, 1000 * 5)
                             }}
                         >
 
                             <span>cc cut {data?.data?.name}</span>
-                            <svg 
-                                width="24" height="25" 
-                                viewBox="0 0 24 25" 
-                                fill="currentColor" 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                aria-hidden="true" 
+                            <svg
+                                width="24" height="25"
+                                viewBox="0 0 24 25"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
                             >
-                                <path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.667c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z"/>
-                                <path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z"/>
+                                <path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.667c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z" />
+                                <path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z" />
                             </svg>
 
                         </button>
@@ -179,7 +207,7 @@ const Cake: NextPage = ({ name }: any) => {
 export async function getServerSideProps(context: any) {
     return {
         props: {
-            name : context.params.name
+            name: context.params.name
         }
     }
 }
