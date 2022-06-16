@@ -7,6 +7,41 @@ import rehypeRaw from "rehype-raw";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+function timeDifference(current : Date, previous: Date) {
+
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    var msPerYear = msPerDay * 365;
+
+    var elapsed = current.valueOf() - previous.valueOf();
+
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' seconds ago';   
+    }
+
+    else if (elapsed < msPerHour) {
+         return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+    }
+
+    else if (elapsed < msPerDay ) {
+         return Math.round(elapsed/msPerHour ) + ' hours ago';   
+    }
+
+    else if (elapsed < msPerMonth) {
+        return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';   
+    }
+
+    else if (elapsed < msPerYear) {
+        return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';   
+    }
+
+    else {
+        return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+    }
+}
+
 const Cake: NextPage = ({ name }: any) => {
 
     const { data, error } = useCake(name)
@@ -77,15 +112,16 @@ const Cake: NextPage = ({ name }: any) => {
 
                         <ul className="mt-2">
                             <li>
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                fill="currentColor" 
-                                viewBox="0 0 100 100" 
-                                width="1.5em" height="1.5em"
-                            >
-                                <path d="M35.156 56.25h-7.812A2.35 2.35 0 0125 53.906v-7.812a2.35 2.35 0 012.344-2.344h7.812a2.35 2.35 0 012.344 2.344v7.812a2.35 2.35 0 01-2.344 2.344zm21.094-2.344v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812a2.35 2.35 0 002.344-2.344zm18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812A2.35 2.35 0 0075 53.906zm-18.75 18.75v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0046.094 75h7.812a2.35 2.35 0 002.344-2.344zm-18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812A2.35 2.35 0 0025 64.844v7.812A2.35 2.35 0 0027.344 75h7.812a2.35 2.35 0 002.344-2.344zm37.5 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0064.844 75h7.812A2.35 2.35 0 0075 72.656zm18.75-50.781v68.75c0 5.176-4.2 9.375-9.375 9.375h-68.75c-5.176 0-9.375-4.2-9.375-9.375v-68.75c0-5.176 4.2-9.375 9.375-9.375H25V2.344A2.35 2.35 0 0127.344 0h7.812A2.35 2.35 0 0137.5 2.344V12.5h25V2.344A2.35 2.35 0 0164.844 0h7.812A2.35 2.35 0 0175 2.344V12.5h9.375c5.176 0 9.375 4.2 9.375 9.375zm-9.375 67.578V31.25h-68.75v58.203c0 .645.527 1.172 1.172 1.172h66.406c.645 0 1.172-.527 1.172-1.172z"/>
-                            </svg>
-                                {data?.data?.lastUpdate}
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    fill="currentColor" 
+                                    viewBox="0 0 100 100" 
+                                    width="1.5em" height="1.5em"
+                                    className="inline-block mr-1"
+                                >
+                                    <path d="M35.156 56.25h-7.812A2.35 2.35 0 0125 53.906v-7.812a2.35 2.35 0 012.344-2.344h7.812a2.35 2.35 0 012.344 2.344v7.812a2.35 2.35 0 01-2.344 2.344zm21.094-2.344v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812a2.35 2.35 0 002.344-2.344zm18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812a2.35 2.35 0 002.344 2.344h7.812A2.35 2.35 0 0075 53.906zm-18.75 18.75v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0046.094 75h7.812a2.35 2.35 0 002.344-2.344zm-18.75 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812A2.35 2.35 0 0025 64.844v7.812A2.35 2.35 0 0027.344 75h7.812a2.35 2.35 0 002.344-2.344zm37.5 0v-7.812a2.35 2.35 0 00-2.344-2.344h-7.812a2.35 2.35 0 00-2.344 2.344v7.812A2.35 2.35 0 0064.844 75h7.812A2.35 2.35 0 0075 72.656zm18.75-50.781v68.75c0 5.176-4.2 9.375-9.375 9.375h-68.75c-5.176 0-9.375-4.2-9.375-9.375v-68.75c0-5.176 4.2-9.375 9.375-9.375H25V2.344A2.35 2.35 0 0127.344 0h7.812A2.35 2.35 0 0137.5 2.344V12.5h25V2.344A2.35 2.35 0 0164.844 0h7.812A2.35 2.35 0 0175 2.344V12.5h9.375c5.176 0 9.375 4.2 9.375 9.375zm-9.375 67.578V31.25h-68.75v58.203c0 .645.527 1.172 1.172 1.172h66.406c.645 0 1.172-.527 1.172-1.172z"/>
+                                </svg>
+                                {timeDifference(new Date(), new Date(data?.data?.lastUpdate))}
                             </li>
 
                             <li>
