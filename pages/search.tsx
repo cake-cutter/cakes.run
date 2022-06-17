@@ -74,7 +74,7 @@ const Search: NextPage = ({ q }: any) => {
                         />
                     </svg>
 
-                    <h1 className="font-extrabold text-3xl text-gray-800">Seach Results <span className="text-gray-600"> for '{q}'</span></h1>
+                    <h1 className="font-extrabold text-3xl text-gray-800">Search Results <span className="text-gray-600"> for '{q}'</span></h1>
                 </div>
                 <div className="mt-5">
                     {data ? data.map((c: any) => {
