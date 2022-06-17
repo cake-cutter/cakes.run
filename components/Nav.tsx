@@ -81,7 +81,7 @@ const Nav = ({ input, val }: Props) => {
                 />
                 <h1 className="text-2xl font-extrabold">Cakecutter</h1>
             </div>
-            <h1 className="md:hidden inline-block underline -mt-3 mb-5 text-lg">
+            <h1 className="md:hidden inline-block underline mt-3 mb-5 text-lg">
                 <Link href="/browse">
                     Browse all cakes
                 </Link>
