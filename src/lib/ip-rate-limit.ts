@@ -1,4 +1,4 @@
-import { initRateLimit, CountFn } from "./rate-limits";
+import { initRateLimit, CountFn } from "./rate-limit";
 import { upstashRest } from "./upstash";
 
 export default function getIP(request: Request) {
