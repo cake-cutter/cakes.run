@@ -86,7 +86,7 @@ const Home: NextPage = () => {
 
       <div className='md:px-52 px-5'>
         <div className="flex mt-10 flex-wrap justify-center gap-5 items-center">
-          <a href="https://docs.cakes.run/1-install" target="_blank" className='flex home-links-button justify-center text-gray-800 items-center rounded-full px-7 py-3 gap-2 font-extrabold'>
+          <a href="https://docs.cakes.run/en/installation" target="_blank" className='flex home-links-button justify-center text-gray-800 items-center rounded-full px-7 py-3 gap-2 font-extrabold'>
             <svg width="14" height="17" viewBox="0 0 14 17" fill="#c4890e" xmlns="http://www.w3.org/2000/svg"><path d="M1 13h12v2H1zM5 2h4v5h3l-5 4.996L2 7h3z"/></svg>
             Install Cakecutter
           </a>
