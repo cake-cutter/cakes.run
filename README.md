@@ -5,6 +5,8 @@
         
 This is the website and backend for cakecutter
 
+# The website is currently being rewritten. 
+
 </div>
 
 <a href="https://github.com/cake-cutter/cc" target="_blank">
